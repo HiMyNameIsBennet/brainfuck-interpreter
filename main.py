@@ -91,7 +91,7 @@ while program_counter < len(src) - 1:
     
     if c == ",":
         while True:
-            read = input()
+            read = input("\n")
 
             if len(read) > 1 or len(read) == 0:
                 print("\nInput not a single char!")
