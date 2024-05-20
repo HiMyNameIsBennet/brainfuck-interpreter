@@ -20,8 +20,7 @@ src = src.replace("\n", "")
 
 def print_error(message, program_counter):
     temp = 0
-    l = 0
-    while l < len(lines) - 1:
+    for l in range(len(lines)):
         if program_counter >= temp + len(lines[l]):
             temp += len(lines[l])
             l += 1
@@ -84,6 +83,8 @@ while program_counter < len(src) - 1:
 
     if c == ".":
         print(chr(memory_cells[current_cell]), end='')
+
+        continue
 
     
     if c == ",":
