@@ -5,6 +5,7 @@ if len(sys.argv) < 2:
     print("No brainfuck sources provided!")
     exit()
 
+
 try: 
     f = open(sys.argv[1])
 except FileNotFoundError:
@@ -45,6 +46,7 @@ program_counter = -1  # i don't like this much
 while program_counter < len(src) - 1:
     program_counter += 1
     c = src[program_counter]
+
 
     if c == "<":
         current_cell -= 1
@@ -115,7 +117,6 @@ while program_counter < len(src) - 1:
 
                 if src[program_counter] == "]":
                     depth -= 1
-
 
             continue
 
