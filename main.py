@@ -17,6 +17,28 @@ f.close()
 lines = src.split("\n")
 src = src.replace("\n", "")
 
+
+def print_error(message, program_counter):
+    temp = 0
+    l = 0
+    while l < len(lines) - 1:
+        if program_counter >= temp + len(lines[l]):
+            temp += len(lines[l])
+            l += 1
+            continue
+
+        for i in range(0, len(lines[l])):
+            if temp != program_counter:
+                temp += 1
+                continue
+
+            print(message, f" at l.{l + 1}:{i + 1}")
+
+            break
+        
+        break
+
+
 memory_cells = [0]
 current_cell = 0
 loop_stack = []
@@ -29,7 +51,7 @@ while program_counter < len(src) - 1:
         current_cell -= 1
 
         if current_cell < 0:
-            # print(f"Memory cell out of bounds at l.{i}:{j}")
+            print_error("Memory cell out of bounds", program_counter)
             exit()
 
         continue
@@ -54,7 +76,7 @@ while program_counter < len(src) - 1:
         memory_cells[current_cell] -= 1
 
         if memory_cells[current_cell] < 0:
-            # print(f"Memory cell {current_cell} became negative at l.{i}:{j}")
+            print_error(f"Memory cell {current_cell} became negative", program_counter)
             exit()
 
         continue
@@ -92,6 +114,7 @@ while program_counter < len(src) - 1:
 
                 if src[program_counter] == "]":
                     depth -= 1
+
 
             continue
 
