@@ -32,7 +32,7 @@ def print_error(message, program_counter):
                 temp += 1
                 continue
 
-            print(message, f" at l.{l + 1}:{i + 1}")
+            print("\n" + message + f" at l.{l + 1}:{i + 1}")
 
             break
         
@@ -94,7 +94,7 @@ while program_counter < len(src) - 1:
             read = input()
 
             if len(read) > 1 or len(read) == 0:
-                print("Input not a single char!")
+                print("\nInput not a single char!")
                 continue
 
             memory_cells[current_cell] = ord(read)
@@ -125,5 +125,9 @@ while program_counter < len(src) - 1:
 
     
     if c == "]":
+        if len(loop_stack) == 0:
+            print_error("Loop delimiter mismatch", program_counter)
+            exit()
+
         program_counter = loop_stack.pop() - 1
         continue
